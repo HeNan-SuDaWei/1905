@@ -2,18 +2,18 @@ import Vue from 'vue'
 import Router from "vue-router"
 
 import home from "./home/index.js"
-import created from "./created/index.js"
-import animation from "./animation/index.js"
-import music from "./music/index.js"
-import opera from "./opera/index.js"
+import life from "./life/index.js"
+import cartoon from "./cartoon/index.js"
+import novel from "./novel/index.js"
+import work from "./work/index.js"
 Vue.use(Router)
 
 export default new Router({
   routes: [
     home,
-    created,
-    animation,
-    music,
-    opera
+    life,
+    cartoon,
+    novel,
+    work
   ]
 })

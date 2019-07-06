@@ -1,10 +1,9 @@
-import Home from "../../views/home"
+
 
 
 
 export default {
     path:"/home",
-    // component:()=>import("views/home"),
-    component:Home,
+    component:()=>import("views/home"),
     name:"home"
 }

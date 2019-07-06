@@ -1,6 +1,6 @@
 <template>
-    <div class="home">
-      <h2>opera</h2>
+    <div class="life">
+      <h2>life</h2>
     </div>
   </template>
   
@@ -9,7 +9,7 @@
   
   export default {
   
-    name:"opera"
+    name:"life"
   
   }
   </script>
