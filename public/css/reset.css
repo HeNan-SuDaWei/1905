@@ -1,0 +1,44 @@
+html,body,ul,li,ol,dl,dt,dd,p,h1,h2,h3,h4,h5,h6,form,table,tr,td,fieldset,legend,img,a,i,em,b,strong,span,input,textarea,
+select
+{
+    padding: 0;
+    margin: 0;
+}
+
+fieldset,img,input{
+    border: none;
+}
+
+ul,ol{
+    list-style: none;
+}
+
+a{
+    text-decoration: none;
+}
+
+.fl{
+    float: left;
+}
+
+.fr{
+    float: right;
+}
+
+fieldset, c{ border:none; }
+
+img{display: block;}
+
+address, caption, cite, code, dfn, th, var { font-style:normal; font-weight:normal; }
+
+ul, ol ,li{ list-style:none; }
+
+body { color:#333; font:12px "SimSun","宋体","Arial Narrow",HELVETICA; background:#fff;}
+
+a { color:#666; text-decoration:none; }
+/*清除浮动*/
+.clear{clear:both}
+*{box-sizing:border-box}
+body,html{
+    height: 100%;
+}
