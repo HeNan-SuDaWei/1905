@@ -12,7 +12,7 @@ http.interceptors.request.use((config)=>{
     if(config.method=='get'){
        
     }else if(config.method=='post'){
-        config.header=['content-type'] = "application/x-www-from-urlencoded"
+        config.headers["content-type"] = "application/x-www-form-urlencoded";
     }
 
     return config

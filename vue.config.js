@@ -11,7 +11,8 @@ module.exports = {
             // },
             "/asimov": {
                 target: "https://www.jianshu.com",
-                changOrigin: true
+                changOrigin: true,
+
             }
         }
     },
