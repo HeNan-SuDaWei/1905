@@ -1,6 +1,7 @@
 <template>
   <div id="app">
-    <router-view></router-view>
+    <keep-alive><router-view></router-view></keep-alive>
+    
     <HanderCom/>
   </div>
 </template>
@@ -9,7 +10,7 @@
   export default{
     components:{
         HanderCom
-    }
+    } 
   }
 
 </script>

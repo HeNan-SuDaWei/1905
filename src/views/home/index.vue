@@ -12,30 +12,30 @@
             </div>
             <hr>
             <ul class="flow-list-container">
-                <li class="not-flow" v-for="(item,index) in content">
-                    <h3 class="title">{{item.object.data.title}}</h3>
-                    <span class="warp-img">
-                        <img src="" alt="">
-                    </span>
-                    <p class="abstract">
-                        {{item.object.data.public_abbr}}
-                    </p>
-                    <i class="icon iconfont">&#xe675;<span>{{item.object.data.total_fp_amount}}</span><span>{{item.object.data.user.nickname}}</span></i>
-                    <i class="icon iconfont">&#xe606;<span>{{item.object.data.public_comments_count}}</span></i>
-                    <i class="icon iconfont">&#xe6db;<span>{{item.object.data.likes_count}}</span></i>
-                </li>
+                    <li class="not-flow" v-for="(item,index) in content">
+                        <h3 class="title">{{item.object.data.title}}</h3>
+                        <span class="warp-img">
+                            <img :src="item.object.data.list_image_url" alt="">
+                        </span>
+                        <p class="abstract">
+                            {{item.object.data.public_abbr}}
+                        </p>
+                        <i class="icon iconfont">&#xe675;<span class="sp">{{item.object.data.total_fp_amount}}&nbsp;&nbsp;&nbsp;{{item.object.data.user.nickname}}</span></i>
+                        <i class="icon iconfont">&#xe606;<span class="sp">{{item.object.data.public_comments_count}}</span></i>
+                        <i class="icon iconfont">&#xe6db;<span class="sp">{{item.object.data.likes_count}}</span></i>
+                    </li>
+                    <div class="copy">
+                        <span>展开更多文章</span><i class="icon iconfont">&#xe658;</i>
+                    </div>
+    
+                    <hr>
+                    <div class="download-guide">
+                        <a href="href">下载简书，创作你的创作</a>
+                    </div>
+    
+                </ul>
 
 
-            </ul>
-
-            <div class="copy">
-                <span>展开更多文章</span><i class="icon iconfont">&#xe658;</i>
-            </div>
-
-            <hr>
-            <div class="download-guide">
-                <a href="href">下载简书，创作你的创作</a>
-            </div>
         </div>
     </div>
 </template>
@@ -56,14 +56,17 @@
             })
 
             this.content = data
+            console.log(data[0].object.data.list_image_url)
+
+
         },
         data() {
             return {
                 content: [],
                 val: 0,
-               
+
                 nav: [
-                     [
+                    [
                         {
                             title: "工作",
                             path: "/work"
@@ -81,7 +84,7 @@
                             path: "/novel"
                         },
                     ],
-                     [
+                    [
                         {
                             title: "2",
                             path: "/work"
@@ -99,7 +102,7 @@
                             path: "/novel"
                         },
                     ],
-                     [
+                    [
                         {
                             title: "工3作",
                             path: "/work"
@@ -117,7 +120,7 @@
                             path: "/novel"
                         }
                     ]
-                    ]
+                ]
 
             }
         },
@@ -131,7 +134,7 @@
                     val = 0
                 }
                 this.val = val
-              
+
             }
         }
 
@@ -216,8 +219,8 @@
         width: 100%;
         height: 100%;
         margin-top: .1rem;
-        padding: .36rem;
-        border-bottom: 1px solid #757575;
+
+
     }
 
     .title {
@@ -232,6 +235,9 @@
         width: 100%;
         line-height: .35rem;
         margin-bottom: .1rem;
+        margin-bottom: .3rem;
+        border-bottom: 1px solid #ccc;
+        padding: .36rem;
 
     }
 
@@ -245,7 +251,11 @@
         float: right;
         margin-top: .2rem;
     }
-
+    .warp-img img{
+        margin-top: .5rem;
+        width: 1.6  rem;
+        height: 1.6rem;
+    }
     .abstract {
         width: 70%;
         font-size: .26rem;
@@ -286,5 +296,9 @@
         font-size: .32rem;
         line-height: .9rem;
 
+    }
+
+    .sp {
+        font-size: .24rem;
     }
 </style>

@@ -1,17 +1,15 @@
 const path = require('path');
-// /asimov/subscriptions/recommended_collections?except_collection_ids[]=13&except_collection_ids[]=95&except_collection_ids[]=83&except_collection_ids[]=76&except_collection_ids[]=21&except_collection_ids[]=283250&except_collection_ids[]=4
 module.exports = {
     devServer: {
         open: true,
         proxy: {
-            //  "/x":{
-
-            //     target:"https://www.jianshu.com",
-            //    changOrigin:true
-            // },
-            "/asimov": {
+            
+            "/a": {
                 target: "https://www.jianshu.com",
                 changOrigin: true,
+                pathRewrite:{
+                    '^/a':'/'
+                }
 
             }
         }
