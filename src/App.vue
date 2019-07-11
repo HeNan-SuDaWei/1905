@@ -1,8 +1,9 @@
 <template>
   <div id="app">
-    <HanderCom/>
     <router-view></router-view>
-      
+    
+    <HanderCom/>
+   
   </div>
 </template>
 <script>

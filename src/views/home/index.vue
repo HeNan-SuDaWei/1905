@@ -15,25 +15,27 @@
             </div>
             <hr>
             <ul class="flow-list-container">
-                <li class="not-flow" v-for="(item,index) in content"
-                :key="index">
+                <router-link class="not-flow" v-for="(item,index) in content" :key="index"  :to="'/listContent/'+item.object.data.slug" tag='li' >
                     <h3 class="title">{{item.object.data.title}}</h3>
                     <span class="warp-img">
                         <img :src="item.object.data.list_image_url" alt="">
                     </span>
-                    <p class="abstract">
+                    <p class="abstract">    
                         {{item.object.data.public_abbr}}
                     </p>
                     <i class="icon iconfont"><em class="icont">&#xe675;</em><span class="sp">{{item.object.data.total_fp_amount}}{{item.object.data.user.nickname}}</span></i>
                     <i class="icon iconfont">&#xe606;<span class="sp">{{item.object.data.public_comments_count}}</span></i>
                     <i class="icon iconfont">&#xe6db;<span class="sp">{{item.object.data.likes_count}}</span></i>
-                </li>
+                </router-link>
 
-            <hr>
-            <div class="download-guide">
-                <a href="href">下载简书，创作你的创作</a>
-            </div>
- 
+                <div class="copy">
+                    <span>展开更多文章</span><i class="icon iconfont">&#xe658;</i>
+                </div>
+
+                <hr>
+                <div class="download-guide">
+                    <a href="href">下载简书，创作你的创作</a>
+                </div>
             </ul>
           </div>
            <router-view></router-view>
@@ -42,11 +44,106 @@
   
 </template>
 
-<script scoped>
-// @ is an alias to /src
-import { getHomeNow } from "api/home";
+<script>
+    // @ is an alias to /src
+    import { getHomeNow } from "api/home"
+
+    export default {
+
+        name: "home",
+        async created() {
+
+            let data = await getHomeNow()
+
+            data.map((item) => {
+                item.object.data.total_fp_amount = item.object.data.total_fp_amount / 1000;
+                // this.slug.push( item.object.data.slug)
+            })
+
+            this.content = data
+            console.log(data)
+            
+            
 
 
+
+        },
+        data() {
+            return {
+                content: [],
+                val: 0,
+                // slug:[],
+                nav: [
+                    [
+                        {
+                            title: "工作",
+                            path: "/work"
+                        },
+                        {
+                            title: "动漫",
+                            path: "/cartoon"
+                        },
+                        {
+                            title: "生活",
+                            path: "/life"
+                        },
+                        {
+                            title: "小说",
+                            path: "/home/novel"
+                        },
+                    ],
+                    [
+                        {
+                            title: "旅行",
+                            path: "/routing/1"
+                        },
+                        {
+                            title: "摄影",
+                            path: "/routing/2"
+                        },
+                        {
+                            title: "手绘",
+                            path: "/routing/3"
+                        },
+                        {
+                            title: "@IT.互联网",
+                            path: "/routing/4"
+                        },
+                    ],
+                    [
+                        {
+                            title: "工3作",
+                            path: "/work"
+                        },
+                        {
+                            title: "动3漫",
+                            path: "/cartoon"
+                        },
+                        {
+                            title: "生3活",
+                            path: "/life"
+                        },
+                        {
+                            title: "小3说",
+                            path: "/novel"
+                        }
+                    ]
+                ]
+
+            }
+        },
+        methods: {
+         
+            handleUpdata(val) {
+                val++
+                if (val > 2) {
+                    val = 0
+                }
+                this.val = val
+
+            }
+        }
+}
 export default {
   name: "home",
   async created() {

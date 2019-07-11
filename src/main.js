@@ -3,7 +3,9 @@ import App from './App.vue'
 import router from './router/'
 import store from './store/'
 import "./common/index.js"
+import Observer from "./observer.js"
 Vue.config.productionTip = false
+Vue.prototype.$observer = Observer
 
 
 

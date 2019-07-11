@@ -7,16 +7,18 @@ import routing from "./routing/index.js"
 import serial from "./serial/index.js"
 import Pointstired from "./Pointstired/index.js"
 import Pay from "./pay/index.js"
+import listContent from "./listContent/index.js"
 Vue.use(Router)
 
 export default new Router({
   routes: [
     home,
     life,
-    routing,
     serial,
     Pointstired,
     Pay,
+    routing,
+    listContent,
       {
         path:"/",
         component:()=>import("views/home"),
