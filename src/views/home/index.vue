@@ -37,6 +37,14 @@
             </ul>
             <router-view></router-view>
 
+            <hr>
+            <div class="download-guide">
+                <a href="href">下载简书，创作你的创作</a>
+            </div>
+ 
+            </ul>
+           <router-view></router-view>
+            
         </div>
     </div>
 </template>
