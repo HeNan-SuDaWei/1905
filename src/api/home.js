@@ -15,7 +15,7 @@ export const getHomeLife1 = ()=> http("get","/a/asimov/collections/slug/8c92f845
 export const getHomeLife2 = ()=> http("get","/a/asimov/collections/slug/8c92f845cd4d/public_notes?page=1&count=10&order_by=commented_at")  
 export const getHomeLife3 = ()=> http("get","/a/asimov/collections/slug/8c92f845cd4d/public_notes?page=1&count=10&order_by=top")  
 
-
+    
 
 
 
