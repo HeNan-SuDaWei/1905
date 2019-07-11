@@ -9,6 +9,7 @@ Vue.prototype.$observer = Observer
 
 
 
+
 new Vue({
   router,
   store,

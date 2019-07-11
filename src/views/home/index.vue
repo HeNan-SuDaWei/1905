@@ -1,6 +1,8 @@
 <template>
+
     <div class="home">
-        <div class="recommend">
+     
+       <div class="recommend">
             <div class="top-title">
                 <h3 class="special">热门专题</h3>
                 <span class="collection-change" @click="handleUpdata(val)">
@@ -35,18 +37,12 @@
                 </div>
 
             </ul>
-            <router-view></router-view>
-
-            <hr>
-            <div class="download-guide">
-                <a href="href">下载简书，创作你的创作</a>
-            </div>
- 
-            </ul>
+                 
+          </div>
            <router-view></router-view>
             
         </div>
-    </div>
+  
 </template>
 
 <script>
@@ -149,12 +145,14 @@
             }
         }
 
-    }
+  
+ 
+}
 </script>
 <style>
   
 
-    .data-head {
+  .data-head {
         width: 100%;
     }
 

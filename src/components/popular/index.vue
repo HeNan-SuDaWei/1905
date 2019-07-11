@@ -1,6 +1,10 @@
 <template>
         <div class="popular">
+<<<<<<< HEAD
                 <div class="hzy-m" v-for="(item,index) in content">
+=======
+                <div class="hzy-m" v-for="(item,index) in content" :key="index">
+>>>>>>> yeqiu
                         <a href="#" class="hzy-5">
                             
                             <h5>{{item.object.data.title}}</h5>

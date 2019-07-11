@@ -1,7 +1,7 @@
 <template>
 
     <div class="jianshu-head">
-        <img  class="head-img" src="https://cdn2.jianshu.io/asimov/src/assets/image/nav-logo.faf216af.png" alt="">
+        <img  class="head-img" src="https://cdn2.jianshu.io/asimov/src/assets/image/nav-logo.faf216af.png" alt="" @click="handle()">
         <span class="slogan">创作你的创作</span>
         <span class="download"><p class=head-left>&gt;</p>免费下载</span>
         <link rel="stylesheet" href="../font_1217409_ifz6qm84zbd/iconfont.css">
@@ -12,8 +12,13 @@
 
 <script>
   export default{
-        name:"handerCom",
-       
+    name:"handerCom",
+
+    methods:{
+        handle(){
+            this.$router.back();
+        }
+    }    
   }
 
 
