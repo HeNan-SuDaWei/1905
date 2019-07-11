@@ -4,6 +4,7 @@ import Router from "vue-router"
 import home from "./home/index.js"
 import routing from "./routing/index.js"
 import listContent from "./listContent/index.js"
+import routing from "./routing/index.js"
 Vue.use(Router)
 
 export default new Router({
@@ -11,6 +12,8 @@ export default new Router({
     home,
     routing,
     listContent,
+    routing,
+
       {
         path:"/",
         component:()=>import("views/home"),

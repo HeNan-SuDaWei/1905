@@ -8,11 +8,12 @@
                 </span>
             </div>
             <div class="recommend-collection">
-                <router-link v-for="(item,index) in nav[val]" :to="item.path"  tag="a" :key="index">{{item.title}}</router-link>
+                <router-link v-for="(item,index) in nav[val]" :to="item.path" @click="handleClick(index)" tag="a" :key="index">{{item.title}}</router-link>
             </div>
             <hr>
             <ul class="flow-list-container">
-                <router-link class="not-flow" v-for="(item,index) in content" :key="index"  :to="'/listContent/'+item.object.data.slug" tag='li' >
+                <li class="not-flow" v-for="(item,index) in content"
+                :key="index">
                     <h3 class="title">{{item.object.data.title}}</h3>
                     <span class="warp-img">
                         <img :src="item.object.data.list_image_url" alt="">
@@ -23,20 +24,20 @@
                     <i class="icon iconfont"><em class="icont">&#xe675;</em><span class="sp">{{item.object.data.total_fp_amount}}{{item.object.data.user.nickname}}</span></i>
                     <i class="icon iconfont">&#xe606;<span class="sp">{{item.object.data.public_comments_count}}</span></i>
                     <i class="icon iconfont">&#xe6db;<span class="sp">{{item.object.data.likes_count}}</span></i>
-                </router-link>
+                </li>
 
-                <div class="copy">
-                    <span>展开更多文章</span><i class="icon iconfont">&#xe658;</i>
-                </div>
+            <div class="copy">
+                <span>展开更多文章</span><i class="icon iconfont">&#xe658;</i>
+            </div>
 
-                <hr>
-                <div class="download-guide">
-                    <a href="href">下载简书，创作你的创作</a>
-                </div>
-
+            <hr>
+            <div class="download-guide">
+                <a href="href">下载简书，创作你的创作</a>
+            </div>
+ 
             </ul>
-            <router-view></router-view>
-
+           <router-view></router-view>
+            
         </div>
     </div>
 </template>
@@ -57,13 +58,7 @@
                 // this.slug.push( item.object.data.slug)
             })
 
-            this.content = data
-            console.log(data)
-            
-            
-
-
-
+            this.content = data;
         },
         data() {
             return {
@@ -144,198 +139,195 @@
     }
 </script>
 <style>
-  
+    *{
+    margin: 0;
+    padding: 0;
+}
+.data-head{
+    width: 100%;
+}
 
-    .data-head {
-        width: 100%;
-    }
+.jianshu-head{
+    font-size: .32rem;
+    width: 100%;
+    height: 1rem;
+    display: flex;
+    align-items: center;
+    padding: .5rem .32rem;
+    border-bottom: 1px solid #757575;
+    position: fixed;
+    
+}
 
-    .jianshu-head {
-        font-size: .32rem;
-        width: 100%;
-        height: 1rem;
-        display: flex;
-        align-items: center;
-        padding: .5rem .32rem;
-        border-bottom: 1px solid #757575;
-        position: fixed;
+.recommend{
+    position: fixed;top:1rem;
+    overflow-y:scroll;
+    height: 12.34rem;
+   
+}
 
-    }
+.head-img{
+    width: 1.12rem;
+    height: .94rem;
+}
 
-    .recommend {
-        position: fixed;
-        top: 1rem;
-        overflow-y: scroll;
-        height: 12.34rem;
+.slogan{
+    margin-left: .24rem;
+    color: #333;
+}
 
-    }
+.download{
+    position: absolute;right: 0;
+    color: #ea6f5a;
+    padding: .24rem .7rem
+}
 
-    .head-img {
-        width: 1.12rem;
-        height: .94rem;
-    }
+.head-left{
+    position: absolute;right: 0;
+    padding-right: .3rem
 
-    .slogan {
-        margin-left: .24rem;
-        color: #333;
-    }
+}
 
-    .download {
-        position: absolute;
-        right: 0;
-        color: #ea6f5a;
-        padding: .24rem .7rem
-    }
+.top-title{
+    display: flex;
+    height: .84rem;
+    align-items: center;
+}
 
-    .head-left {
-        position: absolute;
-        right: 0;
-        padding-right: .3rem
-    }
-
-    .top-title {
-        display: flex;
-        height: .84rem;
-        align-items: center;
-    }
-
-    .special {
-        font-size: .28rem;
-        margin-left: .4rem
-    }
-
-
-    .collection-change {
-        position: absolute;
-        right: .8rem;
-    }
-
-    .collection-change .iconfont {
-        font-size: .24rem;
-        position: absolute;
-        right: .8rem;
-    }
-
-    .recommend-collection {
-        width: 100%;
-        height: 1.6rem;
-        display: flex;
-        flex-wrap: wrap;
-        padding-left: .4rem;
-        align-items: center;
+.special{
+    font-size: .28rem;
+    margin-left: .4rem
+}
 
 
+.collection-change{
+    position: absolute;right: .8rem;
+}
 
-    }
+.collection-change .iconfont{
+    font-size: .24rem;
+    position: absolute;right: .8rem;
+}
 
-    .recommend-collection a {
-        display: block;
-        margin-right: .2rem;
-        font-size: .32rem;
-        border: 1px solid #ea6f5a;
-        border-radius: .1rem;
-        padding: .1rem;
-        color: #ea6f5a;
-    }
+.recommend-collection{
+    width: 100%;
+    height: 1.6rem;
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: .4rem;
+    align-items: center;
+    
+   
+    
+}
 
-    hr {
-        height: .2rem;
-        background-color: #f5f5f5;
-        border: none;
-    }
+.recommend-collection a{
+    display: block;
+    margin-right: .2rem;
+    font-size: .32rem;
+    border: 1px solid #ea6f5a;
+    border-radius: .1rem;
+    padding: .1rem;
+    color: #ea6f5a;
+}
 
-    .flow-list-container {
-        width: 100%;
-        height: 100%;
-        margin-top: .1rem;
+hr{
+    height: .2rem;
+    background-color: #f5f5f5;
+    border: none;
+}
 
+.flow-list-container{
+    width: 100%;
+    height: 100%;
+    margin-top: .1rem;
+   
+    
+}
 
-    }
+.title{
+    float: left;
+    font-size: .34rem;
+    width: 70%;
+    line-height: .5rem;
+    margin-bottom: .1rem
+}
 
-    .title {
-        float: left;
-        font-size: .34rem;
-        width: 70%;
-        line-height: .5rem;
-        margin-bottom: .1rem
-    }
+.not-flow{
+    width: 100%;
+    line-height: .35rem;
+    margin-bottom: .1rem;
+    border-bottom: 1px solid #757575;
+     padding: .36rem; 
 
-    .not-flow {
-        width: 100%;
-        line-height: .35rem;
-        margin-bottom: .1rem;
-        border-bottom: 1px solid #757575;
-        padding: .36rem;
+    
+}
 
-
-    }
-
-    .not-flow .iconfont {
-        font-size: .32rem;
-    }
+.not-flow .iconfont{
+    font-size: .32rem;
+}
 
 
 
-    .warp-img {
-        float: right;
-        margin-top: .2rem;
-    }
+.warp-img{
+    float: right;
+    margin-top: .2rem;
+}
 
-    .warp-img img {
-        width: 2rem;
-        height: 2rem;
-        margin-top: .1rem
-    }
+.warp-img img{
+     width: 2rem;
+    height: 2rem;
+    margin-top: .1rem
+}
 
-    .abstract {
-        width: 70%;
-        font-size: .26rem;
-        color: #999;
-        margin-bottom: .3rem;
-    }
+.abstract{
+    width: 70%;
+    font-size: .26rem;
+    color: #999;
+    margin-bottom: .3rem;
+}
 
-    .copy {
-        width: 100%;
-        height: 1.1rem;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        color: #969696;
-        font-size: .32rem;
-    }
+.copy{
+    width: 100%;
+    height: 1.1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #969696;
+    font-size: .32rem;
+}
 
-    .copy i {
-        font-size: .32rem;
-    }
+.copy i{
+    font-size: .32rem;
+}
 
-    .download-guide {
-        width: 100%;
-        height: 4.4rem;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+.download-guide{
+    width: 100%;
+    height: 4.4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
 
-    }
+.download-guide a{
+    display: block;
+    width: 4.8rem;
+    height: .9rem;
+    color: #f5f5f5;
+    background-color: #ea6f5a;
+    text-align: center;
+    font-size: .32rem; 
+    line-height: .9rem;
+   
+}
 
-    .download-guide a {
-        display: block;
-        width: 4.8rem;
-        height: .9rem;
-        color: #f5f5f5;
-        background-color: #ea6f5a;
-        text-align: center;
-        font-size: .32rem;
-        line-height: .9rem;
-        
+.iconfont .sp{
+    font-size: .24rem;
+}
 
-    }
-
-    .iconfont .sp {
-        font-size: .24rem;
-    }
-
-    .icont {
-        color: red;
-        font-style: normal;
-    }
+.icont{
+    color: red;
+    font-style:normal;
+}
 </style>

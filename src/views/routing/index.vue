@@ -98,7 +98,7 @@ export default {
 };
 </script>
 
-<style >
+<style scoped>
 .icont {
   font-size: 0.24rem;
   position: absolute;
