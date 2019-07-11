@@ -1,17 +1,17 @@
 <template>
 
     <section>
-       <Loading v-if="loadingFalg"/>
-        <div class="he" v-if="!loadingFalg">
+        <div class="he">
             <div class="he1">
                 <img :src="content.image">
             </div>
+
             <div class="he2" ref="an">
                 <h3>{{content.title}}</h3>
                 <i>{{content.owner.nickname}}</i><span> 编，{{content.notes_count}}万篇文章， {{content.subscribers_count}}万人关注</span>
                 <div class="conent-text" v-html="content.content_in_full"></div> 
             </div>
-                <span class="icon iconfont icont"></span>
+                <span class="icon iconfont icont" @click="extension()" ref="hzy">&#xe658;</span>
 
         </div>
                 <div class="he-an">+&nbsp;关注</div>
@@ -81,19 +81,18 @@
 </template>
 
 <script scoped>
-import { routing,photography,handpainted,Internet,Themovie,Thestory, Naturalscience,Thepoem,marriage,Anovel ,traditional,
-work , food,product,comic,original,Originalbusiness,life,entertainment} from "api/home";
-
+import { routing } from "api/home";
+import { photography } from "api/home";
+import { handpainted } from "api/home";
+import { Internet } from "api/home";
 
 export default {
   name: "routing",
-  props: ["id"], 
-
+  props: ["id"],
   data() {
     return {
-      content: "",
-      loadingFalg:true
-    }
+      content: ""
+    };
   },
   async mounted() {
     let data = "";
@@ -116,72 +115,8 @@ export default {
       case "4":
         data = await Internet();
         this.content = data;
+
         break;
-      case "5":
-        data = await Themovie();
-        this.content = data;
-        break;
-      case "6":
-        data = await Thestory();
-        this.content = data;
-        break;
-      case "7":
-        data = await Naturalscience();
-        this.content = data;
-        break;
-      case "8":
-        data = await Thepoem();
-        this.content = data;
-        break;
-      case "9":
-        data = await marriage();
-        this.content = data;
-        break;
-      // case "10":
-      //   data = await serial();
-      //   this.content = data;
-      //   break;
-      case "11":
-        data = await traditional();
-        this.content = data;
-        break;
-      case "12":
-        data = await work();
-        this.content = data;
-        break;
-      case "13":
-        data = await food();
-        this.content = data;
-        break;
-      case "14":
-        data = await product();
-        this.content = data;
-        break;
-      case "15":
-        data = await comic ();
-        this.content = data;
-        break;
-      case "16":
-        data = await original();
-        this.content = data;
-        break;
-      case "17":
-        data = await Originalbusiness();
-        this.content = data;
-        break;
-      case "18":
-        data = await life();
-        this.content = data;
-        break;
-      case "19":
-        data = await entertainment();
-        this.content = data;
-        break;
-    }
-    if(data){
-        this.loadingFalg=false;
-    }else{
-        this.loadingFalg=true;
     }
     console.log(this.content);
     this.content.notes_count = (this.content.notes_count / 10000).toFixed(1);
@@ -189,7 +124,6 @@ export default {
       this.content.subscribers_count / 10000
     ).toFixed(1);
   },
-  
   methods: {
    
   }

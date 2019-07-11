@@ -1,14 +1,17 @@
 <template>
+
     <div class="home">
-        <div class="recommend">
+     
+       <div class="recommend">
             <div class="top-title">
                 <h3 class="special">热门专题</h3>
                 <span class="collection-change" @click="handleUpdata(val)">
                     <p class="icon iconfont">&#xe65e;</p>换一批
                 </span>
             </div>
-            <div class="recommend-collection">
-                <router-link v-for="(item,index) in nav[val]" :to="item.path" @click="handleClick(index)" tag="a" :key="index">{{item.title}}</router-link>
+            <Loading v-if="loadingFlag" />
+            <div class="recommend-collection" v-if="!loadingFlag">
+                <router-link v-for="(item,index) in nav[val]" :to="item.path"  tag="a" :key="index">{{item.title}}</router-link>
             </div>
             <hr>
             <ul class="flow-list-container">
@@ -26,309 +29,337 @@
                     <i class="icon iconfont">&#xe6db;<span class="sp">{{item.object.data.likes_count}}</span></i>
                 </li>
 
-            <div class="copy">
-                <span>展开更多文章</span><i class="icon iconfont">&#xe658;</i>
-            </div>
-
             <hr>
             <div class="download-guide">
                 <a href="href">下载简书，创作你的创作</a>
             </div>
  
             </ul>
+          </div>
            <router-view></router-view>
             
         </div>
-    </div>
+  
 </template>
 
-<script>
-    // @ is an alias to /src
-    import { getHomeNow } from "api/home"
+<script scoped>
+// @ is an alias to /src
+import { getHomeNow } from "api/home";
 
-    export default {
 
-        name: "home",
-        async created() {
+export default {
+  name: "home",
+  async created() {
+    let data = await getHomeNow();
 
-            let data = await getHomeNow()
+    data.map(item => {
+      item.object.data.total_fp_amount =
+        item.object.data.total_fp_amount / 1000;
+    });
 
-            data.map((item) => {
-                item.object.data.total_fp_amount = item.object.data.total_fp_amount / 1000;
-            })
+    this.content = data;
 
-            this.content = data;
-        },
-        data() {
-            return {
-                content: [],
-                val: 0,
-               
-                nav: [
-                     [
-                        {
-                            title: "工作",
-                            path: "/work"
-                        },
-                        {
-                            title: "动漫",
-                            path: "/cartoon"
-                        },
-                        {
-                            title: "生活",
-                            path: "/life"
-                        },
-                        {
-                            title: "小说",
-                            path: "/home/novel"
-                        },
-                    ],
-                     [
-                        {
-                            title: "旅行",
-                            path: "/routing/1"
-                        },
-                        {
-                            title: "摄影",
-                            path: "/routing/2"
-                        },
-                        {
-                            title: "手绘",
-                            path: "/routing/3"
-                        },
-                        {
-                            title: "@IT.互联网",
-                            path: "/routing/4"
-                        },
-                    ],
-                     [
-                        {
-                            title: "工3作",
-                            path: "/work"
-                        },
-                        {
-                            title: "动3漫",
-                            path: "/cartoon"
-                        },
-                        {
-                            title: "生3活",
-                            path: "/life"
-                        },
-                        {
-                            title: "小3说",
-                            path: "/novel"
-                        }
-                    ]
-                    ]
-
-            }
-        },
-        methods: {
-            clickCartoon(index) {
-
-            },
-            handleUpdata(val) {
-                val++
-                if (val > 2) {
-                    val = 0
-                }
-                this.val = val
-              
-            }
-        }
-
+    if (data) {
+      this.loadingFlag = false;
+    } else {
+      this.loadingFlag = true;
     }
+  },
+  data() {
+    return {
+      content: [],
+      val: 0, 
+      loadingFlag: true,
+      nav: [
+        [
+          {
+            title: "自然科普",
+            path: "/routing/7"
+          },
+          {
+            title: "诗",
+            path: "/routing/8"
+          },
+          {
+            title: "婚姻育儿",
+            path: "/routing/9"
+          },
+          {
+            title: "连载小说",
+            path: "/Pointstired"
+          },
+          {
+            title: "国学与传统文化",
+            path: "/routing/11"
+          },
+          {
+            title: "上班这点事",
+            path: "/routing/12"
+          }
+        ],
+        [
+          {
+            title: "旅行在路上",
+            path: "/routing/1"
+          },
+          {
+            title: "摄影",
+            path: "/routing/2"
+          },
+          {
+            title: "手绘",
+            path: "/routing/3"
+          },
+
+          {
+            title: "@IT.互联网",
+            path: "/routing/4"
+          },
+          {
+            title: "简书电影",
+            path: "/routing/5"
+          },
+          {
+            title: "故事",
+            path: "/routing/6"
+          }
+        ],
+        [
+          {
+            title: "美食",
+            path: "/routing/13"
+          },
+          {
+            title: "@产品",
+            path: "/routing/14"
+          },
+          {
+            title: "漫画",
+            path: "/routing/15"
+          },
+          {
+            title: "原创儿童文学",
+            path: "/routing/16"
+          },
+          {
+            title: "创业",
+            path: "/routing/17"
+          },
+          {
+            title: "生活家",
+            path: "/routing/18"
+          },
+          {
+            title: "娱乐圈",
+            path: "/routing/19"
+          }
+        ]
+      ]
+    };
+  },
+  methods: {
+    clickCartoon(index) {},
+    handleUpdata(val) {
+      val++;
+      if (val > 2) {
+        val = 0;
+      }
+      this.val = val;
+    }
+  },
+ 
+}
 </script>
 <style>
-    *{
-    margin: 0;
-    padding: 0;
-}
-.data-head{
-    width: 100%;
+* {
+  margin: 0;
+  padding: 0;
 }
 
-.jianshu-head{
-    font-size: .32rem;
-    width: 100%;
-    height: 1rem;
-    display: flex;
-    align-items: center;
-    padding: .5rem .32rem;
-    border-bottom: 1px solid #757575;
-    position: fixed;
-    
+.warp {
+  height: 100%;
+}
+.data-head {
+  width: 100%;
 }
 
-.recommend{
-    position: fixed;top:1rem;
-    overflow-y:scroll;
-    height: 12.34rem;
-   
+.jianshu-head {
+  font-size: 0.32rem;
+  width: 100%;
+  height: 1rem;
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 0.32rem;
+  border-bottom: 1px solid #757575;
+  position: fixed;
+  
+  
+  
 }
 
-.head-img{
-    width: 1.12rem;
-    height: .94rem;
+.recommend {
+  position: fixed;
+  top: 1rem;
+  overflow-y: scroll;
+  height: 12.34rem;
 }
 
-.slogan{
-    margin-left: .24rem;
-    color: #333;
+.head-img {
+  width: 1.12rem;
+  height: 0.94rem;
 }
 
-.download{
-    position: absolute;right: 0;
-    color: #ea6f5a;
-    padding: .24rem .7rem
+.slogan {
+  margin-left: 0.24rem;
+  color: #333;
 }
 
-.head-left{
-    position: absolute;right: 0;
-    padding-right: .3rem
+.download {
+  position: absolute;
+  right: 0;
+  color: #ea6f5a;
+  padding: 0.24rem 0.7rem;
+}
+
+.head-left {
+  position: absolute;
+  right: 0;
+  padding-right: 0.3rem;
+}
+
+.top-title {
+  display: flex;
+  height: 0.84rem;
+  align-items: center;
+  
+  
 
 }
 
-.top-title{
-    display: flex;
-    height: .84rem;
-    align-items: center;
+.special {
+  font-size: 0.28rem;
+  margin-left: 0.4rem;
 }
 
-.special{
-    font-size: .28rem;
-    margin-left: .4rem
+.collection-change {
+  position: absolute;
+  right: 0.8rem;
 }
 
-
-.collection-change{
-    position: absolute;right: .8rem;
+.collection-change .iconfont {
+  font-size: 0.24rem;
+  position: absolute;
+  right: 0.8rem;
 }
 
-.collection-change .iconfont{
-    font-size: .24rem;
-    position: absolute;right: .8rem;
+.recommend-collection {
+  width: 100%;
+  height: 1.6rem;
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 0.4rem;
+  align-items: center;
 }
 
-.recommend-collection{
-    width: 100%;
-    height: 1.6rem;
-    display: flex;
-    flex-wrap: wrap;
-    padding-left: .4rem;
-    align-items: center;
-    
-   
-    
+.recommend-collection a {
+  display: block;
+  margin-right: 0.2rem;
+  font-size: 0.32rem;
+  border: 1px solid #ea6f5a;
+  border-radius: 0.1rem;
+  padding: 0.1rem;
+  color: #ea6f5a;
 }
 
-.recommend-collection a{
-    display: block;
-    margin-right: .2rem;
-    font-size: .32rem;
-    border: 1px solid #ea6f5a;
-    border-radius: .1rem;
-    padding: .1rem;
-    color: #ea6f5a;
+hr {
+  height: 0.2rem;
+  background-color: #f5f5f5;
+  border: none;
 }
 
-hr{
-    height: .2rem;
-    background-color: #f5f5f5;
-    border: none;
+.flow-list-container {
+  width: 100%;
+  height: 100%;
+  margin-top: 0.1rem;
 }
 
-.flow-list-container{
-    width: 100%;
-    height: 100%;
-    margin-top: .1rem;
-   
-    
+.title {
+  float: left;
+  font-size: 0.34rem;
+  width: 70%;
+  line-height: 0.5rem;
+  margin-bottom: 0.1rem;
 }
 
-.title{
-    float: left;
-    font-size: .34rem;
-    width: 70%;
-    line-height: .5rem;
-    margin-bottom: .1rem
+.not-flow {
+  width: 100%;
+  line-height: 0.35rem;
+  margin-bottom: 0.1rem;
+  border-bottom: 1px solid #757575;
+  padding: 0.36rem;
 }
 
-.not-flow{
-    width: 100%;
-    line-height: .35rem;
-    margin-bottom: .1rem;
-    border-bottom: 1px solid #757575;
-     padding: .36rem; 
-
-    
+.not-flow .iconfont {
+  font-size: 0.32rem;
 }
 
-.not-flow .iconfont{
-    font-size: .32rem;
+.warp-img {
+  float: right;
+  margin-top: 0.2rem;
 }
 
-
-
-.warp-img{
-    float: right;
-    margin-top: .2rem;
+.warp-img img {
+  width: 2rem;
+  height: 2rem;
+  margin-top: 0.1rem;
 }
 
-.warp-img img{
-     width: 2rem;
-    height: 2rem;
-    margin-top: .1rem
+.abstract {
+  width: 70%;
+  font-size: 0.26rem;
+  color: #999;
+  margin-bottom: 0.3rem;
 }
 
-.abstract{
-    width: 70%;
-    font-size: .26rem;
-    color: #999;
-    margin-bottom: .3rem;
+.copy {
+  width: 100%;
+  height: 1.1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #969696;
+  font-size: 0.32rem;
 }
 
-.copy{
-    width: 100%;
-    height: 1.1rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #969696;
-    font-size: .32rem;
+.copy i {
+  font-size: 0.32rem;
 }
 
-.copy i{
-    font-size: .32rem;
+.download-guide {
+  width: 100%;
+  height: 4.4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.download-guide{
-    width: 100%;
-    height: 4.4rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
+.download-guide a {
+  display: block;
+  width: 4.8rem;
+  height: 0.9rem;
+  color: #f5f5f5;
+  background-color: #ea6f5a;
+  text-align: center;
+  font-size: 0.32rem;
+  line-height: 0.9rem;
 }
 
-.download-guide a{
-    display: block;
-    width: 4.8rem;
-    height: .9rem;
-    color: #f5f5f5;
-    background-color: #ea6f5a;
-    text-align: center;
-    font-size: .32rem; 
-    line-height: .9rem;
-   
+.iconfont .sp {
+  font-size: 0.24rem;
 }
 
-.iconfont .sp{
-    font-size: .24rem;
-}
-
-.icont{
-    color: red;
-    font-style:normal;
+.icont {
+  color: red;
+  font-style: normal;
 }
 </style>

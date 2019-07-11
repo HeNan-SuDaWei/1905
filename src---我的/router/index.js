@@ -3,20 +3,22 @@ import Router from "vue-router"
 
 import home from "./home/index.js"
 import life from "./life/index.js"
+import cartoon from "./cartoon/index.js"
+import novel from "./novel/index.js"  
+import work from "./work/index.js"
 import routing from "./routing/index.js"
-import serial from "./serial/index.js"
-import Pointstired from "./Pointstired/index.js"
-import Pay from "./pay/index.js"
+import muban from "./muban/index.js"
 Vue.use(Router)
 
 export default new Router({
   routes: [
     home,
     life,
+    cartoon,
+    novel,
+    work,
     routing,
-    serial,
-    Pointstired,
-    Pay,
+    muban,
       {
         path:"/",
         component:()=>import("views/home"),

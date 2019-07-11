@@ -37,22 +37,10 @@ export const product=()=>http("get","/a/asimov/collections/slug/ad41ba5abc09");
 
 export const comic=()=>http("get","/a/asimov/collections/slug/263e0ef8c3c3");
 
-// export const original=()=>http("get","/a/asimov/collections/slug/6fba5273f339");
+export const original=()=>http("get","/a/asimov/collections/slug/6fba5273f339");
 
 export const Originalbusiness=()=>http("get","/a/asimov/collections/slug/LLCyGH");
 
 export const life=()=>http("get","/a/asimov/collections/slug/f6b4ca4bb891");
 
 export const entertainment=()=>http("get","/a/asimov/collections/slug/e50258a6a44b");
-
-//详情页
-
-export const serial=()=>http("get","/a/asimov/books/214/chapters?page=1&count=15&order=d");
-
-//更多分类
-
-export const Pointstired=()=>http("get","/a/asimov/books/categories");
-
-//付费
-export const Pay=(id)=>http("get","/a/asimov/books",{page:1,count:12,category_id:id});
-
