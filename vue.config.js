@@ -3,7 +3,9 @@
 const path = require('path');
 module.exports = {
     devServer: {
-        proxy: {
+        open: true,
+        proxy:{
+            
             "/a": {
                 target: "https://www.jianshu.com",
                 changOrigin: true,

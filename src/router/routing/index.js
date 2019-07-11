@@ -3,4 +3,22 @@ export default {
     component:()=>import("views/routing"),
     name:"routing",
     props:true,
+    redirect:"/routing/:id/comment",
+    children:[
+        {
+            path:"comment",
+            component:()=>import("components/comment"),
+            name:"comment"
+        },
+        {
+            path:"lncluded",
+            component:()=>import("components/lncluded"),
+            name:"lncluded"
+        },
+        {
+            path:"popular",
+            component:()=>import("components/popular"),
+            name:"popular"
+        }
+    ]
 }

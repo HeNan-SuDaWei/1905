@@ -16,64 +16,17 @@
         </div>
                 <div class="he-an">+&nbsp;关注</div>
         <hr/>
+        
         <ul class="hzy-k">
-            <li>最新收入</li>
-            <li>最新评论</li>
-            <li>热门</li>
-        </ul>
-        <div class="hzy-m">
-            <a href="#" class="hzy-5">
-                
-                <h5>除了我，谁会安利这部破名字的好剧</h5>
-                <p>今年的好剧，有一部Sir迟迟没有推荐。 它慢，但后劲足的，就万不能...</p>
-            </a>
-            <span class="hzy4"><img></span>
-            <div class="hzy-p">
-                <i class="iconfont">&#xe675;</i>
-                <span>0.078</span>
-                <span>sir电影</span>
-                <i class="iconfont">&#xe66e;</i>
-                <span>0</span>
-                <i class="iconfont">&#xe6db;</i>
-                <span>2</span>
-            </div>
-        </div>
-        <div class="hzy-m">
-            
-            <p>{{id}}</p>
-                <a href="#" class="hzy-5">
-                    
-                    <h5>除了我，谁会安利这部破名字的好剧</h5>
-                    <p>今年的好剧，有一部Sir迟迟没有推荐。 它慢，但后劲足的，就万不能...</p>
-                </a>
-                <span class="hzy4"><img></span>
-                <div class="hzy-p">
-                    <i class="iconfont">&#xe675;</i>
-                    <span>0.078</span>
-                    <span>sir电影</span>
-                    <i class="iconfont">&#xe66e;</i>
-                    <span>0</span>
-                    <i class="iconfont">&#xe6db;</i>
-                    <span>2</span>
-                </div>
-            </div>
-            <div class="hzy-m">
-                    <a href="#" class="hzy-5">
-                        
-                        <h5>除了我，谁会安利这部破名字的好剧</h5>
-                        <p>今年的好剧，有一部Sir迟迟没有推荐。 它慢，但后劲足的，就万不能...</p>
-                    </a>
-                    <span class="hzy4"><img></span>
-                    <div class="hzy-p">
-                        <i class="iconfont">&#xe675;</i>
-                        <span>0.078</span>
-                        <span>sir电影</span>
-                        <i class="iconfont">&#xe66e;</i>
-                        <span>0</span>
-                        <i class="iconfont">&#xe6db;</i>
-                        <span>2</span>
-                    </div>
-                </div>
+
+            <router-link v-for="(item,index) in nav" :to="item.path"  tag="li" :key="index">{{item.name}}</router-link>
+     
+</ul>
+<keep-alive>
+        <router-view></router-view>
+   
+</keep-alive>
+
 
     </section>
 
@@ -91,9 +44,24 @@ export default {
   props: ["id"],
   data() {
     return {
-      content: ""
+      content: "",
+      nav:[
+        {
+          path:"/routing/:id/lncluded",
+          name:"最新收录"
+        },
+        {
+          path:"/routing/:id/comment",
+          name:"最新评论"
+        },
+        {
+          path:"/routing/:id/popular",
+          name:"热门"
+        },
+      ]
     };
   },
+
   async mounted() {
     let data = "";
     switch (this.id) {
@@ -130,7 +98,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style >
 .icont {
   font-size: 0.24rem;
   position: absolute;

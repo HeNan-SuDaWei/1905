@@ -31,6 +31,7 @@
     padding: .5rem .32rem;
     border-bottom: 1px solid #757575;
     position: fixed;
+    top: 0;
     
 }
     
