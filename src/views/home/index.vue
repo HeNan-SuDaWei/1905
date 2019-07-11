@@ -8,33 +8,34 @@
                 </span>
             </div>
             <div class="recommend-collection">
-                <router-link v-for="(item,index) in nav[val]" :to="item.path" @click="handleClick(index)" tag="a">{{item.title}}</router-link>
+                <router-link v-for="(item,index) in nav[val]" :to="item.path"  tag="a" :key="index">{{item.title}}</router-link>
             </div>
             <hr>
             <ul class="flow-list-container">
-                    <li class="not-flow" v-for="(item,index) in content">
-                        <h3 class="title">{{item.object.data.title}}</h3>
-                        <span class="warp-img">
-                            <img :src="item.object.data.list_image_url" alt="">
-                        </span>
-                        <p class="abstract">
-                            {{item.object.data.public_abbr}}
-                        </p>
-                        <i class="icon iconfont">&#xe675;<span class="sp">{{item.object.data.total_fp_amount}}&nbsp;&nbsp;&nbsp;{{item.object.data.user.nickname}}</span></i>
-                        <i class="icon iconfont">&#xe606;<span class="sp">{{item.object.data.public_comments_count}}</span></i>
-                        <i class="icon iconfont">&#xe6db;<span class="sp">{{item.object.data.likes_count}}</span></i>
-                    </li>
-                    <div class="copy">
-                        <span>展开更多文章</span><i class="icon iconfont">&#xe658;</i>
-                    </div>
-    
-                    <hr>
-                    <div class="download-guide">
-                        <a href="href">下载简书，创作你的创作</a>
-                    </div>
-    
-                </ul>
+                <router-link class="not-flow" v-for="(item,index) in content" :key="index"  :to="'/listContent/'+item.object.data.slug" tag='li' >
+                    <h3 class="title">{{item.object.data.title}}</h3>
+                    <span class="warp-img">
+                        <img :src="item.object.data.list_image_url" alt="">
+                    </span>
+                    <p class="abstract">    
+                        {{item.object.data.public_abbr}}
+                    </p>
+                    <i class="icon iconfont"><em class="icont">&#xe675;</em><span class="sp">{{item.object.data.total_fp_amount}}{{item.object.data.user.nickname}}</span></i>
+                    <i class="icon iconfont">&#xe606;<span class="sp">{{item.object.data.public_comments_count}}</span></i>
+                    <i class="icon iconfont">&#xe6db;<span class="sp">{{item.object.data.likes_count}}</span></i>
+                </router-link>
 
+                <div class="copy">
+                    <span>展开更多文章</span><i class="icon iconfont">&#xe658;</i>
+                </div>
+
+                <hr>
+                <div class="download-guide">
+                    <a href="href">下载简书，创作你的创作</a>
+                </div>
+
+            </ul>
+            <router-view></router-view>
 
         </div>
     </div>
@@ -53,10 +54,14 @@
 
             data.map((item) => {
                 item.object.data.total_fp_amount = item.object.data.total_fp_amount / 1000;
+                // this.slug.push( item.object.data.slug)
             })
 
             this.content = data
-            console.log(data[0].object.data.list_image_url)
+            console.log(data)
+            
+            
+
 
 
         },
@@ -64,7 +69,7 @@
             return {
                 content: [],
                 val: 0,
-
+                // slug:[],
                 nav: [
                     [
                         {
@@ -81,25 +86,25 @@
                         },
                         {
                             title: "小说",
-                            path: "/novel"
+                            path: "/home/novel"
                         },
                     ],
                     [
                         {
-                            title: "2",
-                            path: "/work"
+                            title: "旅行",
+                            path: "/routing/1"
                         },
                         {
-                            title: "2漫",
-                            path: "/cartoon"
+                            title: "摄影",
+                            path: "/routing/2"
                         },
                         {
-                            title: "生2活",
-                            path: "/life"
+                            title: "手绘",
+                            path: "/routing/3"
                         },
                         {
-                            title: "小2说",
-                            path: "/novel"
+                            title: "@IT.互联网",
+                            path: "/routing/4"
                         },
                     ],
                     [
@@ -125,9 +130,7 @@
             }
         },
         methods: {
-            clickCartoon(index) {
-
-            },
+         
             handleUpdata(val) {
                 val++
                 if (val > 2) {
@@ -141,15 +144,41 @@
     }
 </script>
 <style>
+  
+
+    .data-head {
+        width: 100%;
+    }
+
+    .jianshu-head {
+        font-size: .32rem;
+        width: 100%;
+        height: 1rem;
+        display: flex;
+        align-items: center;
+        padding: .5rem .32rem;
+        border-bottom: 1px solid #757575;
+        position: fixed;
+
+    }
+
     .recommend {
         position: fixed;
         top: 1rem;
         overflow-y: scroll;
         height: 12.34rem;
+
     }
 
+    .head-img {
+        width: 1.12rem;
+        height: .94rem;
+    }
 
-
+    .slogan {
+        margin-left: .24rem;
+        color: #333;
+    }
 
     .download {
         position: absolute;
@@ -225,7 +254,7 @@
 
     .title {
         float: left;
-        font-size: .36rem;
+        font-size: .34rem;
         width: 70%;
         line-height: .5rem;
         margin-bottom: .1rem
@@ -235,9 +264,9 @@
         width: 100%;
         line-height: .35rem;
         margin-bottom: .1rem;
-        margin-bottom: .3rem;
-        border-bottom: 1px solid #ccc;
+        border-bottom: 1px solid #757575;
         padding: .36rem;
+
 
     }
 
@@ -251,11 +280,13 @@
         float: right;
         margin-top: .2rem;
     }
-    .warp-img img{
-        margin-top: .5rem;
-        width: 1.6  rem;
-        height: 1.6rem;
+
+    .warp-img img {
+        width: 2rem;
+        height: 2rem;
+        margin-top: .1rem
     }
+
     .abstract {
         width: 70%;
         font-size: .26rem;
@@ -295,10 +326,16 @@
         text-align: center;
         font-size: .32rem;
         line-height: .9rem;
+        
 
     }
 
-    .sp {
+    .iconfont .sp {
         font-size: .24rem;
+    }
+
+    .icont {
+        color: red;
+        font-style: normal;
     }
 </style>

@@ -1,10 +1,9 @@
-
-import comment from "../../components/comment"
 export default {
-    path:"/life",
-    component:()=>import("views/life"),
-    name:"life",
-    redirect:"/life/comment",
+    path:"/routing/:id",
+    component:()=>import("views/routing"),
+    name:"routing",
+    props:true,
+    redirect:"/routing/:id/comment",
     children:[
         {
             path:"comment",

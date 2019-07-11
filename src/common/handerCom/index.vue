@@ -1,5 +1,5 @@
 <template>
-<div id="hander">
+
     <div class="jianshu-head">
         <img  class="head-img" src="https://cdn2.jianshu.io/asimov/src/assets/image/nav-logo.faf216af.png" alt="">
         <span class="slogan">创作你的创作</span>
@@ -7,7 +7,6 @@
         <link rel="stylesheet" href="../font_1217409_ifz6qm84zbd/iconfont.css">
     </div>
     
-</div>
 </template>
 
 
@@ -32,6 +31,7 @@
     padding: .5rem .32rem;
     border-bottom: 1px solid #757575;
     position: fixed;
+    top: 0;
     
 }
     
